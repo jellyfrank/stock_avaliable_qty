@@ -8,7 +8,7 @@ class product_template(models.Model):
     _inherit = "product.template"
 
     real_qty_avaiable = fields.Float(
-        "Quantity Avaiable", compute="_compute_quantities", digits=dp.get_precision('Product Unit of Measure'))
+        "Quantity Available", compute="_compute_quantities", digits=dp.get_precision('Product Unit of Measure'))
 
     def _compute_quantities(self):
         res = self._compute_quantities_dict()
