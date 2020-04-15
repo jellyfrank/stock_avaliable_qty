@@ -8,7 +8,7 @@ class stock_quant(models.Model):
     _inherit = "stock.quant"
 
     available_qty = fields.Float(
-        "Available Quantity", compute="_get_available_qty", store=True)
+        _("Available Quantity"), compute="_get_available_qty", store=True)
 
     @api.depends("quantity", "reserved_quantity")
     def _get_available_qty(self):
@@ -21,7 +21,7 @@ class product_template(models.Model):
     _inherit = "product.template"
 
     real_qty_available = fields.Float(
-        "Quantity Available", compute="_compute_quantities", digits=dp.get_precision('Product Unit of Measure'))
+        _("Quantity Available"), compute="_compute_quantities", digits=dp.get_precision('Product Unit of Measure'))
 
     def _compute_quantities(self):
         res = self._compute_quantities_dict()
@@ -64,7 +64,7 @@ class product(models.Model):
     _inherit = "product.product"
 
     real_qty_available = fields.Float(
-        "Quantity Avaiable", compute="_compute_quantities", digits=dp.get_precision('Product Unit of Measure'))
+        _("Quantity Available"), compute="_compute_quantities", digits=dp.get_precision('Product Unit of Measure'))
 
     @api.depends('stock_move_ids.product_qty', 'stock_move_ids.state')
     def _compute_quantities(self):

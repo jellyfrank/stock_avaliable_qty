@@ -1,14 +1,14 @@
 # Translation of Odoo Server.
 # This file contains the translation of the following modules:
-# 	* stock_available_qty
+# 	* stock_avaliable_qty
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Odoo Server 12.0+e\n"
+"Project-Id-Version: Odoo Server 13.0+e\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-15 03:02+0000\n"
-"PO-Revision-Date: 2020-04-15 11:03+0800\n"
-"Last-Translator: <>\n"
+"POT-Creation-Date: 2020-04-15 08:50+0000\n"
+"PO-Revision-Date: 2020-04-15 16:52+0800\n"
+"Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -17,28 +17,38 @@ msgstr ""
 "Language: zh\n"
 "X-Generator: Poedit 2.2.4\n"
 
-#. module: stock_available_qty
-#: model_terms:ir.ui.view,arch_db:stock_available_qty.stock_available_product_quantity_form
-#: model_terms:ir.ui.view,arch_db:stock_available_qty.stock_available_quantity_form
+#. module: stock_avaliable_qty
+#: model_terms:ir.ui.view,arch_db:stock_avaliable_qty.stock_available_product_quantity_form
+#: model_terms:ir.ui.view,arch_db:stock_avaliable_qty.stock_available_quantity_form
 msgid "<span class=\"o_stat_text\">Available Quantity</span>"
-msgstr "<span class=\"o_stat_text\">可用数量</span>"
+msgstr "<span class=\"o_stat_text\">可用库存</span>"
 
-#. module: stock_available_qty
-#: model:ir.model,name:stock_available_qty.model_product_product
+#. module: stock_avaliable_qty
+#: code:addons/stock_avaliable_qty/models/models.py:0
+#: model:ir.model.fields,field_description:stock_avaliable_qty.field_stock_quant__available_qty
+#, python-format
+msgid "Available Quantity"
+msgstr "可用数量"
+
+#. module: stock_avaliable_qty
+#: model:ir.model,name:stock_avaliable_qty.model_product_product
 msgid "Product"
 msgstr "产品"
 
-#. module: stock_available_qty
-#: model:ir.model,name:stock_available_qty.model_product_template
+#. module: stock_avaliable_qty
+#: model:ir.model,name:stock_avaliable_qty.model_product_template
 msgid "Product Template"
 msgstr "产品模板"
 
-#. module: stock_available_qty
-#: model:ir.model.fields,field_description:stock_available_qty.field_product_product__real_qty_avaiable
-msgid "Quantity Avaiable"
-msgstr "当前可用"
-
-#. module: stock_available_qty
-#: model:ir.model.fields,field_description:stock_available_qty.field_product_template__real_qty_avaiable
+#. module: stock_avaliable_qty
+#: code:addons/stock_avaliable_qty/models/models.py:0
+#: model:ir.model.fields,field_description:stock_avaliable_qty.field_product_product__real_qty_available
+#: model:ir.model.fields,field_description:stock_avaliable_qty.field_product_template__real_qty_available
+#, python-format
 msgid "Quantity Available"
-msgstr "当前可用"
+msgstr "可用数量"
+
+#. module: stock_avaliable_qty
+#: model:ir.model,name:stock_avaliable_qty.model_stock_quant
+msgid "Quants"
+msgstr "库存"
