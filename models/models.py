@@ -10,7 +10,6 @@ class stock_quant(models.Model):
     avaliable_qty = fields.Float(
         "可用库存", compute="_get_avaliable_qty", store=True)
 
-    @api.one
     @api.depends("quantity", "reserved_quantity")
     def _get_avaliable_qty(self):
         self.avaliable_qty = self.quantity - self.reserved_quantity
