@@ -3,6 +3,19 @@ from odoo.addons import decimal_precision as dp
 from odoo.tools.float_utils import float_round
 
 
+class stock_quant(models.Model):
+
+    _inherit = "stock.quant"
+
+    avaliable_qty = fields.Float(
+        "可用库存", compute="_get_avaliable_qty", store=True)
+
+    @api.one
+    @api.depends("quantity", "reserved_quantity")
+    def _get_avaliable_qty(self):
+        self.avaliable_qty = self.quantity - self.reserved_quantity
+
+
 class product_template(models.Model):
 
     _inherit = "product.template"
