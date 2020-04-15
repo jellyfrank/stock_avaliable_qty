@@ -9,7 +9,7 @@
           <button type="object" name="action_open_quants" attrs="{'invisible':[('type', '!=', 'product')]}" class="oe_stat_button" icon="fa-building-o">
             <div class="o_field_widget o_stat_info">
               <span class="o_stat_value" widget="statinfo">
-                <field name="real_qty_avaiable" widget="statinfo" nolabel="1" class="mr4"/>
+                <field name="real_qty_available" widget="statinfo" nolabel="1" class="mr4"/>
                 <field name="uom_name"/>
               </span>
               <span class="o_stat_text">Available Quantity</span>
@@ -28,7 +28,7 @@
           <button type="object" name="action_open_quants" attrs="{'invisible':[('type', '!=', 'product')]}" class="oe_stat_button" icon="fa-building-o">
             <div class="o_field_widget o_stat_info">
               <span class="o_stat_value" widget="statinfo">
-                <field name="real_qty_avaiable" widget="statinfo" nolabel="1" class="mr4"/>
+                <field name="real_qty_available" widget="statinfo" nolabel="1" class="mr4"/>
                 <field name="uom_name"/>
               </span>
               <span class="o_stat_text">Available Quantity</span>

@@ -7,19 +7,20 @@ class stock_quant(models.Model):
 
     _inherit = "stock.quant"
 
-    avaliable_qty = fields.Float(
-        "可用库存", compute="_get_avaliable_qty", store=True)
+    available_qty = fields.Float(
+        "Available Quantity", compute="_get_available_qty", store=True)
 
     @api.depends("quantity", "reserved_quantity")
-    def _get_avaliable_qty(self):
-        self.avaliable_qty = self.quantity - self.reserved_quantity
+    def _get_available_qty(self):
+        for record in self:
+            record.available_qty = record.quantity - record.reserved_quantity
 
 
 class product_template(models.Model):
 
     _inherit = "product.template"
 
-    real_qty_avaiable = fields.Float(
+    real_qty_available = fields.Float(
         "Quantity Available", compute="_compute_quantities", digits=dp.get_precision('Product Unit of Measure'))
 
     def _compute_quantities(self):
@@ -29,7 +30,7 @@ class product_template(models.Model):
             template.virtual_available = res[template.id]['virtual_available']
             template.incoming_qty = res[template.id]['incoming_qty']
             template.outgoing_qty = res[template.id]['outgoing_qty']
-            template.real_qty_avaiable = res[template.id]['real_qty_avaiable']
+            template.real_qty_available = res[template.id]['real_qty_available']
 
     def _compute_quantities_dict(self):
         # TDE FIXME: why not using directly the function fields ?
@@ -41,19 +42,19 @@ class product_template(models.Model):
             virtual_available = 0
             incoming_qty = 0
             outgoing_qty = 0
-            real_qty_avaiable = 0
+            real_qty_available = 0
             for p in template.product_variant_ids:
                 qty_available += variants_available[p.id]["qty_available"]
                 virtual_available += variants_available[p.id]["virtual_available"]
                 incoming_qty += variants_available[p.id]["incoming_qty"]
                 outgoing_qty += variants_available[p.id]["outgoing_qty"]
-                real_qty_avaiable += variants_available[p.id]["real_qty_avaiable"]
+                real_qty_available += variants_available[p.id]["real_qty_available"]
             prod_available[template.id] = {
                 "qty_available": qty_available,
                 "virtual_available": virtual_available,
                 "incoming_qty": incoming_qty,
                 "outgoing_qty": outgoing_qty,
-                "real_qty_avaiable": real_qty_avaiable
+                "real_qty_available": real_qty_available
             }
         return prod_available
 
@@ -62,7 +63,7 @@ class product(models.Model):
 
     _inherit = "product.product"
 
-    real_qty_avaiable = fields.Float(
+    real_qty_available = fields.Float(
         "Quantity Avaiable", compute="_compute_quantities", digits=dp.get_precision('Product Unit of Measure'))
 
     @api.depends('stock_move_ids.product_qty', 'stock_move_ids.state')
@@ -74,7 +75,7 @@ class product(models.Model):
             product.incoming_qty = res[product.id]['incoming_qty']
             product.outgoing_qty = res[product.id]['outgoing_qty']
             product.virtual_available = res[product.id]['virtual_available']
-            product.real_qty_avaiable = res[product.id]['real_qty_avaiable']
+            product.real_qty_available = res[product.id]['real_qty_available']
 
     def _compute_quantities_dict(self, lot_id, owner_id, package_id, from_date=False, to_date=False):
         domain_quant_loc, domain_move_in_loc, domain_move_out_loc = self._get_domain_locations()
@@ -149,7 +150,7 @@ class product(models.Model):
                 qty_available + res[product_id]['incoming_qty'] -
                 res[product_id]['outgoing_qty'],
                 precision_rounding=rounding)
-            res[product.id]['real_qty_avaiable'] = float_round(
+            res[product.id]['real_qty_available'] = float_round(
                 quants_res.get(product_id, (0.0, 0.0))[1], precision_rounding=rounding)
 
         return res
