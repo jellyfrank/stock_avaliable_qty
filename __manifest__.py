@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "Product Avaiable Quantity",
+    'name': "Product Available Quantity",
 
     'summary': """
         Show Available Quantity in Product
     """,
 
     'description': """
-        Long description of module's purpose
+        Show real available quantity in product info.
     """,
 
     'author': "Kevin Kong",
@@ -32,4 +32,5 @@
     'demo': [
         'demo/demo.xml',
     ],
+    "application":True,
 }
