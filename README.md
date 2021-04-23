@@ -1,4 +1,4 @@
-# Stock Avaiable Qty
+# Stock Available Qty
 
 产品信息中显示实时可用数量
 
